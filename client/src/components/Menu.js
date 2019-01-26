@@ -38,7 +38,7 @@ export const Menu = ({ setVisibility, visibility }) => {
                 }
             </span>
             <span>
-                <a href="#"><GoMarkGithub />
+                <a href="#"><button>GitHub</button>
                 </a>
             </span>
         </nav>

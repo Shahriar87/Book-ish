@@ -32,7 +32,11 @@ class App extends Component {
       ]
     }
     this.updateQuery = this.updateQuery.bind(this);
-
+		this.updateHighlight = this.updateHighlight.bind(this);
+		this.addFavorite = this.addFavorite.bind(this);
+		this.updateFavoriteHighlight = this.updateFavoriteHighlight.bind(this);
+		this.updateVisibility = this.updateVisibility.bind(this);
+		this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   // ----- Fetch query from Google API
@@ -147,6 +151,17 @@ class App extends Component {
     });
   }
 
+  updateFavoriteHighlight(highlight) {
+		this.setState({
+			highlight: highlight.highlight,
+			visibility: {
+				highlight: true,
+				booklist: false,
+				favorites: true
+			}
+		});
+	}
+
   addFavorite(data) {
     this.setState({
       items: this.state.items.filter((item, i) => i !== this.state.highlight),
@@ -179,14 +194,6 @@ class App extends Component {
       },
       favorites: [...remove]
     });
-
-    dbPromise.then(db => {
-      let tx = db.transaction('favorites', 'readwrite');
-      let favorites = tx.objectStore('favorites', 'readwrite');
-      favorites.delete(data.title);
-    }).catch(error => {
-      console.error('IndexedDB:', error);
-    })
 
     axios.delete(`/api/favorites/${data._id}`, data)
       .then(function (res) {
@@ -224,7 +231,11 @@ class App extends Component {
         <BookList data={this.state.items}
           highlight={this.updateHighlight}
           visibility={this.state.visibility.booklist} />
-          
+
+        <Favorites data={this.state.favorites}
+          highlight={this.updateFavoriteHighlight}
+          visibility={this.state.visibility.favorites} />
+
         <Menu setVisibility={this.updateVisibility}
           visibility={this.state.visibility} />
 
