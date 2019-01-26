@@ -221,6 +221,10 @@ class App extends Component {
           addFavorite={this.addFavorite}
           removeFavorite={this.removeFavorite} />
 
+        <BookList data={this.state.items}
+          highlight={this.updateHighlight}
+          visibility={this.state.visibility.booklist} />
+          
         <Menu setVisibility={this.updateVisibility}
           visibility={this.state.visibility} />
 
