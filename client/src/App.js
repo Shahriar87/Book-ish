@@ -8,6 +8,12 @@ import { Favorites } from './components/Favorites';
 import { Menu } from './components/Menu';
 import axios from 'axios';
 
+const styles = {
+  body: {
+    background: "#e8eaf6"
+  },
+};
+
 
 class App extends Component {
 
@@ -218,7 +224,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app jumbotron" style={styles.body}>
         <DashBoard queryObject={this.updateQuery} />
 
         <Highlight data={this.state.visibility.favorites ?

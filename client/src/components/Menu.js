@@ -27,14 +27,14 @@ export const Menu = ({ setVisibility, visibility }) => {
         <nav aria-label="App navigation" id="app-nav">
             <span>
                 {visibility.favorites ?
-                    <button style={color}></button> :
-                    <button onClick={() => showFavorites()}></button>
+                    <button style={color}>Go To Home</button> :
+                    <button onClick={() => showFavorites()}>Go To Favourites</button>
                 }
             </span>
             <span>
                 {visibility.favorites ?
-                    <button onClick={() => showHome()}></button> :
-                    <button style={color}></button>
+                    <button onClick={() => showHome()}>Go To Home</button> :
+                    <button style={color}>Go To Home</button>
                 }
             </span>
             <span>
