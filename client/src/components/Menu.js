@@ -38,7 +38,7 @@ export const Menu = ({ setVisibility, visibility }) => {
                 }
             </span>
             <span>
-                <a href="#"><button>GitHub</button>
+                <a href="https://github.com/Shahriar87/Book-ish"><button>GitHub</button>
                 </a>
             </span>
         </nav>
