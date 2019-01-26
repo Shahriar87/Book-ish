@@ -1,4 +1,5 @@
-# Book-ish : Create React Express App (App is under-construction)
+# Book-ish (App is under-construction)
+### A MERN Stack App
 
 ## Starting the app locally
 
