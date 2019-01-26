@@ -6,7 +6,6 @@ import { Highlight } from './components/Highlight';
 import { BookList } from './components/BookList';
 import { Favorites } from './components/Favorites';
 import { Menu } from './components/Menu';
-import idb from 'idb';
 import axios from 'axios';
 
 
@@ -36,7 +35,6 @@ class App extends Component {
 
   }
 
-  // Set the current query in state on change
   updateQuery(queryObject) {
     this.setState({
       queryObject: {
@@ -51,7 +49,17 @@ class App extends Component {
     }, () => {
       this.fetchQuery();
     });
+  }
 
+  // ----- Update visibility with state
+  updateVisibility(setVisibility) {
+    this.setState({
+      visibility: {
+        highlight: setVisibility.highlight,
+        booklist: setVisibility.booklist,
+        favorites: setVisibility.favorites
+      }
+    });
   }
 
   render() {
@@ -59,6 +67,12 @@ class App extends Component {
       <div className="app">
         <DashBoard queryObject={this.updateQuery} />
 
+        <Highlight data={this.state.visibility.favorites ?
+          this.state.favorites[this.state.highlight] :
+          this.state.items[this.state.highlight]}
+          visibility={this.state.visibility}
+          addFavorite={this.addFavorite}
+          removeFavorite={this.removeFavorite} />
 
       </div>
     )
