@@ -12,19 +12,53 @@ import axios from 'axios';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      items: [
+        null
+      ],
+      queryObject: {
+        type: 'q=intitle:',
+        query: 'harry+potter'
+      },
+      highlight: 0,
+      visibility: {
+        highlight: false,
+        booklist: false,
+        favorites: false
+      },
+      favorites: [
+        null
+      ]
+    }
+    this.updateQuery = this.updateQuery.bind(this);
 
+  }
 
+  // Set the current query in state on change
+  updateQuery(queryObject) {
+    this.setState({
+      queryObject: {
+        type: queryObject.type,
+        query: queryObject.query
+      },
+      visibility: {
+        highlight: false,
+        booklist: true,
+        favorites: false
+      }
+    }, () => {
+      this.fetchQuery();
+    });
 
-
-
-
-
-
+  }
 
   render() {
     return (
       <div className="app">
         <DashBoard queryObject={this.updateQuery} />
+
 
       </div>
     )
