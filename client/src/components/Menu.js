@@ -27,7 +27,7 @@ export const Menu = ({ setVisibility, visibility }) => {
         <nav aria-label="App navigation" id="app-nav">
             <span>
                 {visibility.favorites ?
-                    <button style={color}>Go To Home</button> :
+                    <button style={color}>Go To Favourites</button> :
                     <button onClick={() => showFavorites()}>Go To Favourites</button>
                 }
             </span>

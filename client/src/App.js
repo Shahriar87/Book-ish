@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { DashBoard } from './components/DashBoard';
 import { Highlight } from './components/Highlight';
@@ -38,11 +37,11 @@ class App extends Component {
       ]
     }
     this.updateQuery = this.updateQuery.bind(this);
-		this.updateHighlight = this.updateHighlight.bind(this);
-		this.addFavorite = this.addFavorite.bind(this);
-		this.updateFavoriteHighlight = this.updateFavoriteHighlight.bind(this);
-		this.updateVisibility = this.updateVisibility.bind(this);
-		this.removeFavorite = this.removeFavorite.bind(this);
+    this.updateHighlight = this.updateHighlight.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.updateFavoriteHighlight = this.updateFavoriteHighlight.bind(this);
+    this.updateVisibility = this.updateVisibility.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
   }
 
   // ----- Fetch query from Google API
@@ -133,18 +132,6 @@ class App extends Component {
     });
   }
 
-  // ----- Update visibility with state
-  updateVisibility(setVisibility) {
-    this.setState({
-      visibility: {
-        highlight: setVisibility.highlight,
-        booklist: setVisibility.booklist,
-        favorites: setVisibility.favorites
-      }
-    });
-  }
-
-
   // ----- Detail info about selected books
   updateHighlight(highlight) {
     this.setState({
@@ -158,15 +145,15 @@ class App extends Component {
   }
 
   updateFavoriteHighlight(highlight) {
-		this.setState({
-			highlight: highlight.highlight,
-			visibility: {
-				highlight: true,
-				booklist: false,
-				favorites: true
-			}
-		});
-	}
+    this.setState({
+      highlight: highlight.highlight,
+      visibility: {
+        highlight: true,
+        booklist: false,
+        favorites: true
+      }
+    });
+  }
 
   addFavorite(data) {
     this.setState({
@@ -222,9 +209,20 @@ class App extends Component {
       });
   }
 
+  // ----- Update visibility with state
+  updateVisibility(setVisibility) {
+    this.setState({
+      visibility: {
+        highlight: setVisibility.highlight,
+        booklist: setVisibility.booklist,
+        favorites: setVisibility.favorites
+      }
+    });
+  }
+
   render() {
     return (
-      <div className="app jumbotron" style={styles.body}>
+      <div className="app jumbotron text-center" style={styles.body}>
         <DashBoard queryObject={this.updateQuery} />
 
         <Highlight data={this.state.visibility.favorites ?
@@ -234,18 +232,31 @@ class App extends Component {
           addFavorite={this.addFavorite}
           removeFavorite={this.removeFavorite} />
 
-        <BookList data={this.state.items}
-          highlight={this.updateHighlight}
-          visibility={this.state.visibility.booklist} />
+        <div className="card">
+          <ul className="list-group list-group-flush">
+            <BookList
+              data={this.state.items}
+              highlight={this.updateHighlight}
+              visibility={this.state.visibility.booklist} />
+          </ul>
+        </div>
 
-        <Favorites data={this.state.favorites}
-          highlight={this.updateFavoriteHighlight}
-          visibility={this.state.visibility.favorites} />
+
+        <div className="card">
+          <ul className="list-group list-group-flush">
+            <Favorites
+              data={this.state.favorites}
+              highlight={this.updateFavoriteHighlight}
+              visibility={this.state.visibility.favorites} />
+          </ul>
+        </div>
+
+        <br />
 
         <Menu setVisibility={this.updateVisibility}
           visibility={this.state.visibility} />
 
-      </div>
+      </div >
     )
   }
 }
