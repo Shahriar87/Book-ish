@@ -1,5 +1,7 @@
 # Book-ish (App is under-construction)
-### A MERN Stack App
+### A MERN Stack Application to search books using Google Books API and save favorites. Entier UI is built with React. 
+
+[Check the app](https://floating-peak-65543.herokuapp.com/)
 
 ## Starting the app locally
 
